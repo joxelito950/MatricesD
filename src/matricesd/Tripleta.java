@@ -51,7 +51,7 @@ public class Tripleta {
         while(k<=listaTrip[0][2] && listaTrip[k][0]<f && listaTrip[k][1]<c && listaTrip[k][0]!=0)
             k++;
         if(k<=listaTrip[0][2] && listaTrip[k][1]==f && listaTrip[k][1]==c){
-            JOptionPane.showMessageDialog(null,"Yya existe un dato en esa posicion","No Insertado",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Ya existe un dato en esa posicion","No Insertado",JOptionPane.INFORMATION_MESSAGE);
         }
         else{
             for(j=(int)listaTrip[0][2];j>=k;j--){
