@@ -18,7 +18,7 @@ public class Tripleta {
     public Tripleta(int nf,int nc,int cd){
         this.nFilas=nf;
         this.nColumnas=nc;
-        this.nt= cd;
+        this.nt= cd+1;
         listaTrip = new float[nt][3];
         listaTrip[0][0]=nFilas;
         listaTrip[0][1]=nColumnas;
@@ -30,13 +30,14 @@ public class Tripleta {
         int i,k,j;
         i=1;
         for(k=0;k<=listaTrip[0][0];k++){
+            
             for(j=0;j<=listaTrip[0][1];j++){
-                    if(listaTrip[i][0]==k && listaTrip[i][1]==j){
+                    if(i<=listaTrip[0][2] && listaTrip[i][0]==k && listaTrip[i][1]==j){
                         m+=listaTrip[i][2]+"    ";
                         i++;
                     }
                     else{
-                        m+=0+"  ";
+                        m+=0.0+"    ";
                     }
             }
             m+="\n";
@@ -46,23 +47,23 @@ public class Tripleta {
     
     public void almacenarTrip(int f, int c, float d){
         int k=1,j;
-        while(k<=listaTrip[0][2] && listaTrip[k][0]<f && listaTrip[k][2]!=0)
+        while(k<listaTrip[0][2] && listaTrip[k][0]<f && listaTrip[k][2]!=0)
             k++;
-        while(k<=listaTrip[0][2] && listaTrip[k][0]<f && listaTrip[k][1]<c && listaTrip[k][0]!=0)
+        while(k<listaTrip[0][2] && listaTrip[k][0]<=f && listaTrip[k][1]<c && listaTrip[k][2]!=0)
             k++;
-        if(k<=listaTrip[0][2] && listaTrip[k][1]==f && listaTrip[k][1]==c){
+        if(k<listaTrip[0][2] && listaTrip[k][0]==f && listaTrip[k][1]==c){
             JOptionPane.showMessageDialog(null,"Ya existe un dato en esa posicion","No Insertado",JOptionPane.INFORMATION_MESSAGE);
         }
         else{
             for(j=(int)listaTrip[0][2];j>=k;j--){
-                listaTrip[j+1][0]=listaTrip[j][0];
-                listaTrip[j+1][1]=listaTrip[j][1];
-                listaTrip[j+1][2]=listaTrip[j][2];
+                listaTrip[j][0]=listaTrip[j-1][0];
+                listaTrip[j][1]=listaTrip[j-1][1];
+                listaTrip[j][2]=listaTrip[j-1][2];
             }
             listaTrip[k][0]=f;
             listaTrip[k][1]=c;
             listaTrip[k][2]=d;
-            listaTrip[0][2]=listaTrip[0][2]+1;
+            //listaTrip[0][2]=listaTrip[0][2]+1;
         }
     }
     
@@ -70,16 +71,16 @@ public class Tripleta {
         int k=1,j;
         while(k<=listaTrip[0][2] && listaTrip[k][0]<f && listaTrip[k][2]!=0)
             k++;
-        while(k<=listaTrip[0][2] && listaTrip[k][0]<f && listaTrip[k][1]<c && listaTrip[k][0]!=0)
+        while(k<=listaTrip[0][2] && listaTrip[k][0]<=f && listaTrip[k][1]<c && listaTrip[k][0]!=0)
             k++;
         if(k<=listaTrip[0][2] && listaTrip[k][1]==f && listaTrip[k][1]==c){
             if(listaTrip[k][2]+d!=0)
                 listaTrip[k][2]=listaTrip[k][2]+d;
             else{
                 for(j=k;j<listaTrip[0][2];j++){
-                    listaTrip[j+1][0]=listaTrip[j][0];
-                    listaTrip[j+1][1]=listaTrip[j][1];
-                    listaTrip[j+1][2]=listaTrip[j][2];
+                    listaTrip[j][0]=listaTrip[j-1][0];
+                    listaTrip[j][1]=listaTrip[j-1][1];
+                    listaTrip[j][2]=listaTrip[j-1][2];
                 }
                 listaTrip[0][2]=listaTrip[0][2]-1;
             }
@@ -119,7 +120,7 @@ public class Tripleta {
     }
     
     public int getCdatos(){
-        return 1;
+        return (int)listaTrip[0][2];
     }
     
     public int getFila(){
