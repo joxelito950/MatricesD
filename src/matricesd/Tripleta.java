@@ -29,7 +29,6 @@ public class Tripleta {
         String m="";
         int i=1,k,j;
         for(k=0;k<=listaTrip[0][0];k++){
-            
             for(j=0;j<=listaTrip[0][1];j++){
                     if(i<=listaTrip[0][2] && listaTrip[i][0]==k && listaTrip[i][1]==j){
                         m+=listaTrip[i][2]+"    ";
@@ -50,9 +49,8 @@ public class Tripleta {
             k++;
         while(k<listaTrip[0][2] && listaTrip[k][0]<=f && listaTrip[k][1]<c && listaTrip[k][2]!=0)
             k++;
-        if(k<listaTrip[0][2] && listaTrip[k][0]==f && listaTrip[k][1]==c){
+        if(k<listaTrip[0][2] && listaTrip[k][0]==f && listaTrip[k][1]==c)
             JOptionPane.showMessageDialog(null,"Ya existe un dato en esa posicion","No Insertado",JOptionPane.INFORMATION_MESSAGE);
-        }
         else{
             for(j=(int)listaTrip[0][2];j>=k;j--){
                 listaTrip[j][0]=listaTrip[j-1][0];
@@ -62,7 +60,6 @@ public class Tripleta {
             listaTrip[k][0]=f;
             listaTrip[k][1]=c;
             listaTrip[k][2]=d;
-            //listaTrip[0][2]=listaTrip[0][2]+1;
         }
     }
     
@@ -70,9 +67,9 @@ public class Tripleta {
         int k=1,j;
         while(k<=listaTrip[0][2] && listaTrip[k][0]<f && listaTrip[k][2]!=0)
             k++;
-        while(k<=listaTrip[0][2] && listaTrip[k][0]<=f && listaTrip[k][1]<c && listaTrip[k][0]!=0)
+        while(k<=listaTrip[0][2] && listaTrip[k][0]<=f && listaTrip[k][1]<c && listaTrip[k][2]!=0)
             k++;
-        if(k<=listaTrip[0][2] && listaTrip[k][1]==f && listaTrip[k][1]==c){
+        if(k<=listaTrip[0][2] && listaTrip[k][0]==f && listaTrip[k][1]==c){
             if(listaTrip[k][2]+d!=0)
                 listaTrip[k][2]=listaTrip[k][2]+d;
             else{
@@ -111,11 +108,11 @@ public class Tripleta {
     }
 
     public int getNfilas() {
-        return nFilas;
+        return nFilas+1;
     }
 
     public int getNcolumnas() {
-        return nColumnas;
+        return nColumnas+1;
     }
     
     public int getCdatos(){
@@ -131,13 +128,11 @@ public class Tripleta {
     }
     
     public float getDato(int f, int c){
-        float d=0;
-        int j=1;
         for(int i=1;i<=getCdatos();i++){
             if(listaTrip[i][0]==f && listaTrip[i][1]==c)
                 return listaTrip[i][2];
         }
-        return d;
+        return 0;
     }
     
     public void setDato(int f, int c, float dato){
