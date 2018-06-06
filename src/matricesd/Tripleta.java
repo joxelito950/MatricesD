@@ -148,20 +148,20 @@ public class Tripleta {
     }
     
     public void sumarfilas(){
-        float s=0;
-        int j=1;
-        while(j<=getNfilas()){
-            s=listaTrip[j][2];
-            for(int i=1;i<=getCdatos();i++){
-                if(listaTrip[j][0]==listaTrip[i][0])
-                    s=s+listaTrip[i][2];
+        int j=0;
+        for(int i=1;i<=listaTrip[0][2];i++){
+            float s=0;
+            while(listaTrip[i][0]==j && i<=getNfilas()){
+                s=s+listaTrip[i][2];
+                i++;
             }
-            JOptionPane.showMessageDialog(null, s, "sumatoria fila "+j, JOptionPane.PLAIN_MESSAGE);
+            i--;
             j++;
+            JOptionPane.showMessageDialog(null, s, "Suma fila "+j, JOptionPane.PLAIN_MESSAGE);
         }
     }
     
-    public void mayorColumna(){
+    public void menorColumna(){
         
     }
     
