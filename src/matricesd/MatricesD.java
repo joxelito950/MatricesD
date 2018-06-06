@@ -19,7 +19,7 @@ public class MatricesD {
     private static Tripleta mDTrip = null;
     
     private static void menu(){
-        String infoMenu="0. Salir\n"+"1. Crear MD\n"+"2. \n"+"3. \n"+"4. \n";
+        String infoMenu="0. Salir\n"+"1. Crear MD\n"+"2. Mostrar MD\n"+"3. Insertar Dato\n"+"4. \n";
         boolean sw;
         do{
         sw=opcion(Integer.parseInt(JOptionPane.showInputDialog(null, infoMenu, "***MENU***", JOptionPane.PLAIN_MESSAGE)));
@@ -46,18 +46,29 @@ public class MatricesD {
                 }
                 else
                     JOptionPane.showMessageDialog(null, "Ya se creo una Matriz Dispersa", "Ya existe", JOptionPane.INFORMATION_MESSAGE);
-                    
                 break;
             case 2:
-                
+                if(mDTrip!=null){
+                    mDTrip.mostrar();
+                }
+                else
+                    JOptionPane.showMessageDialog(null, "No se ha creado una Matriz Dispersa", "Falta Matriz", JOptionPane.ERROR_MESSAGE);
                 break;
             case 3: 
-                
+                if(mDTrip!=null){
+                    int nF=Integer.parseInt(JOptionPane.showInputDialog(null,"Fila","Ingrese",JOptionPane.PLAIN_MESSAGE));
+                    int nC=Integer.parseInt(JOptionPane.showInputDialog(null,"Columna","Ingrese",JOptionPane.PLAIN_MESSAGE));
+                    int nD=Integer.parseInt(JOptionPane.showInputDialog(null,"Dato","Ingrese",JOptionPane.PLAIN_MESSAGE));
+                    mDTrip.insertarTrip(nF, nC, nD);
+                }
+                else
+                    JOptionPane.showMessageDialog(null, "No se creo una Matriz Dispersa", "Falta Matriz", JOptionPane.ERROR_MESSAGE);
                 break;
             case 4:
                 
                 break;
             default:
+                JOptionPane.showMessageDialog(null, "Opcion no valida", "Error", JOptionPane.QUESTION_MESSAGE);
                 break;
         }
         return true;
