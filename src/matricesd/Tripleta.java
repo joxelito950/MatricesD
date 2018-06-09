@@ -64,35 +64,37 @@ public class Tripleta {
     }
     
     public void insertarTrip(int f,int c, float d){
-        int k=1,j;
-        while(k<=listaTrip[0][2] && listaTrip[k][0]<f && listaTrip[k][2]!=0)
-            k++;
-        while(k<=listaTrip[0][2] && listaTrip[k][0]<=f && listaTrip[k][1]<c && listaTrip[k][2]!=0)
-            k++;
-        if(k<=listaTrip[0][2] && listaTrip[k][0]==f && listaTrip[k][1]==c){
-            if(listaTrip[k][2]+d!=0)
-                listaTrip[k][2]=listaTrip[k][2]+d;
-            else{
-                for(j=k;j<listaTrip[0][2];j++){
-                    listaTrip[j][0]=listaTrip[j-1][0];
-                    listaTrip[j][1]=listaTrip[j-1][1];
-                    listaTrip[j][2]=listaTrip[j-1][2];
+        if(d!=0){
+            int k=1,j;
+            while(k<=listaTrip[0][2] && listaTrip[k][0]<f && listaTrip[k][2]!=0)
+                k++;
+            while(k<=listaTrip[0][2] && listaTrip[k][0]<=f && listaTrip[k][1]<c && listaTrip[k][2]!=0)
+                k++;
+            if(k<=listaTrip[0][2] && listaTrip[k][0]==f && listaTrip[k][1]==c){
+                if(listaTrip[k][2]+d!=0)
+                    listaTrip[k][2]=listaTrip[k][2]+d;
+                else{
+                    for(j=k;j<listaTrip[0][2];j++){
+                        listaTrip[j][0]=listaTrip[j-1][0];
+                        listaTrip[j][1]=listaTrip[j-1][1];
+                        listaTrip[j][2]=listaTrip[j-1][2];
+                    }
+                    listaTrip[0][2]=listaTrip[0][2]-1;
                 }
-                listaTrip[0][2]=listaTrip[0][2]-1;
             }
-        }
-        else{
-            if(listaTrip[0][2]==nt)
-                redimensionar();
-            for(j=(int)listaTrip[0][2];j>=k;j--){
-                listaTrip[j+1][0]=listaTrip[j][0];
-                listaTrip[j+1][1]=listaTrip[j][1];
-                listaTrip[j+1][2]=listaTrip[j][2];
+            else{
+                if(listaTrip[0][2]==nt)
+                    redimensionar();
+                for(j=(int)listaTrip[0][2];j>=k;j--){
+                    listaTrip[j+1][0]=listaTrip[j][0];
+                    listaTrip[j+1][1]=listaTrip[j][1];
+                    listaTrip[j+1][2]=listaTrip[j][2];
+                }
+                listaTrip[k][0]=f;
+                listaTrip[k][1]=c;
+                listaTrip[k][2]=d;
+                listaTrip[0][2]=listaTrip[0][2]+1;
             }
-            listaTrip[k][0]=f;
-            listaTrip[k][1]=c;
-            listaTrip[k][2]=d;
-            listaTrip[0][2]=listaTrip[0][2]+1;
         }
     }
     
@@ -119,12 +121,16 @@ public class Tripleta {
         return (int)listaTrip[0][2];
     }
     
-    public int getFila(){
-        return 0;
+    public int getFila(int i){
+        if(i<=listaTrip[0][0])
+            return (int)listaTrip[i][0];
+        return Integer.MIN_VALUE;
     }
     
-    public int getColumna(){
-        return 1;
+    public int getColumna(int i){
+        if(i<=listaTrip[0][1])
+            return (int)listaTrip[i][1];
+        return Integer.MIN_VALUE;
     }
     
     public float getDato(int f, int c){
@@ -195,7 +201,43 @@ public class Tripleta {
     }
     
     public Tripleta sumar(Tripleta b){ 
-        return b;
+        if(this.getNfilas()==b.getNfilas() && this.getNcolumnas()==b.getNcolumnas()){
+            Tripleta res=new Tripleta(b.getNfilas(),b.getNcolumnas(),0);
+            for(int i=0;i<=listaTrip[0][0];i++){
+                for(int j=0;j<=listaTrip[0][1];j++)
+                    res.insertarTrip(i, j, this.getDato(i, j)+b.getDato(i, j));
+            }
+            return res;
+        }
+        return null;
+    }
+    
+    public ListaF1 sumar(ListaF2 b){
+        if(b!=null){
+            if(this.getNfilas()==b.getNfilas() && this.getNcolumnas()==b.getNcolumnas()){
+                ListaF1 res=new ListaF1(b.getNfilas(),b.getNcolumnas());
+                for(int i=0;i<=listaTrip[0][0];i++){
+                    for(int j=0;j<=listaTrip[0][1];j++)
+                        res.insertarDato(i, j, this.getDato(i, j)+b.getDato(i, j));
+                }
+            return res;
+            }
+        }
+        return null;
+    }
+    
+    public ListaF2 sumar(ListaF1 b){
+        if(b!=null){
+            if(this.getNfilas()==b.getNfilas() && this.getNcolumnas()==b.getNcolumnas()){
+                ListaF2 res=new ListaF2(b.getNfilas(),b.getNcolumnas());
+                for(int i=0;i<=listaTrip[0][0];i++){
+                    for(int j=0;j<=listaTrip[0][1];j++)
+                        res.insertarDato(i, j, this.getDato(i, j)+b.getDato(i, j));
+                }
+            return res;
+            }
+        }
+        return null;
     }
     
     public Tripleta multiplicar(Tripleta b){

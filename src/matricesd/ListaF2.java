@@ -20,12 +20,69 @@ public class ListaF2 {
         cabeza.setLigaColumna(cabeza);
     }
     
+    public int getNfilas() {
+        return cabeza.getFila();
+    }
+
+    public int getNcolumnas() {
+        return cabeza.getColumna();
+    }
+    
+    public int getCdatos(){
+        int cont=0;
+        Nodo p=cabeza.getLigaFila();
+        while(p!=cabeza){
+            cont++;
+            p=p.getLigaFila();        
+        }
+        return cont;
+    }
+    
+    public int getFila(int i){
+        if(i<=cabeza.getFila()){
+            Nodo p=cabeza.getLigaFila();
+            while(p!=cabeza){
+                if(i==p.getFila())
+                    return p.getFila();
+            }
+        }
+        return Integer.MIN_VALUE;
+    }
+    
+    public int getColumna(int i){
+        if(i<=cabeza.getColumna()){
+            Nodo p=cabeza.getLigaColumna();
+            while(p!=cabeza){
+                if(i==p.getColumna())
+                    return p.getColumna();
+            }
+        }
+        return Integer.MIN_VALUE;
+    }
+    
+    public float getDato(int f, int c){
+        if(f<=cabeza.getFila() && c<=cabeza.getColumna()){
+            Nodo p=cabeza.getLigaFila();
+            while(p!=cabeza){
+                if(f==p.getFila() && c==p.getColumna())
+                    return p.getFila();
+            }
+            return 0;
+        }
+        return Float.MIN_VALUE;
+    }
+    
+    public void setDato(int f, int c, float dato){
+        
+    }
+    
     public void mostrar(){
         String muestra="";
         Nodo p=cabeza.getLigaFila();
         while(p!=cabeza){
             muestra=muestra+p.getDato();
-            p=p.getLigaFila();        }
+            p=p.getLigaFila();        
+        }
         JOptionPane.showMessageDialog(null, muestra, "Datos diferentes de cero en la matriz", JOptionPane.PLAIN_MESSAGE);
     }
 
@@ -60,38 +117,40 @@ public class ListaF2 {
     }
     
     public void insertarDato(int f, int c, float d){
-        Nodo p=cabeza.getLigaFila(), q, antF=cabeza, antC=cabeza;
-        while(p!=cabeza && p.getFila()<f){
-            antF=p;
-            p=p.getLigaFila();
-        }
-        while(p!=cabeza && p.getFila()==f && p.getColumna()<c){
-            antF=p;
-            p=p.getLigaFila();
-        }
-        p=cabeza.getLigaColumna();
-        while(p!=cabeza && p.getColumna()<c){
-            antC=p;
-            p=p.getLigaColumna();
-        }
-        while(p!=cabeza && p.getColumna()==c && p.getFila()<f){
-            antC=p;
-            p=p.getLigaColumna();
-        }
-        if(p!=cabeza && p.getColumna()==c && p.getFila()==f){
-            if(p.getDato()+d!=0)
-                p.setDato(p.getDato()+d);
-            else{
-                antF.setLigaFila(p.getLigaFila());
-                antC.setLigaColumna(p.getLigaColumna());
+        if(d!=0){
+            Nodo p=cabeza.getLigaFila(), q, antF=cabeza, antC=cabeza;
+            while(p!=cabeza && p.getFila()<f){
+                antF=p;
+                p=p.getLigaFila();
             }
-        }
-        else{
-            Nodo x=new Nodo(f,c,d);
-            x.setLigaFila(antF.getLigaFila());
-            antF.setLigaFila(x);
-            x.setLigaColumna(p);
-            antC.setLigaColumna(x);
+            while(p!=cabeza && p.getFila()==f && p.getColumna()<c){
+                antF=p;
+                p=p.getLigaFila();
+            }
+            p=cabeza.getLigaColumna();
+            while(p!=cabeza && p.getColumna()<c){
+                antC=p;
+                p=p.getLigaColumna();
+            }
+            while(p!=cabeza && p.getColumna()==c && p.getFila()<f){
+                antC=p;
+                p=p.getLigaColumna();
+            }
+            if(p!=cabeza && p.getColumna()==c && p.getFila()==f){
+                if(p.getDato()+d!=0)
+                    p.setDato(p.getDato()+d);
+                else{
+                    antF.setLigaFila(p.getLigaFila());
+                    antC.setLigaColumna(p.getLigaColumna());
+                }
+            }
+            else{
+                Nodo x=new Nodo(f,c,d);
+                x.setLigaFila(antF.getLigaFila());
+                antF.setLigaFila(x);
+                x.setLigaColumna(p);
+                antC.setLigaColumna(x);
+            }
         }
     }
 
@@ -118,6 +177,7 @@ public class ListaF2 {
     }
     
     public ListaF2 sumar(ListaF2 b){
+        
         return b;
     }
     

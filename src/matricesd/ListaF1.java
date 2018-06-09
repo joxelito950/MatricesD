@@ -22,8 +22,90 @@ public class ListaF1 {
         return cab;
     }
     
-    public void mostrar(){
+    public int getNfilas() {
+        return cab.getFila();
+    }
+
+    public int getNcolumnas() {
+        return cab.getColumna();
+    }
+    
+    public int getCdatos(){
+        int cont=0;
+        Nodo p=cab.getLigaFila();
+        while(p!=cab){
+            cont++;
+            p=p.getLigaFila();        
+        }
+        return cont;
+    }
+    
+    public int getFila(int i){
+        if(i<=cab.getFila()){
+            Nodo p=cab.getLiga();
+            while(p!=cab){
+                Nodo q=p.getLigaFila();
+                while(q!=p){
+                    if(i==q.getFila())
+                        return q.getFila();
+                    q=q.getLigaFila();
+                }
+                p=p.getLiga();
+            }
+        }
+        return Integer.MIN_VALUE;
+    }
+    
+    public int getColumna(int i){
+        if(i<=cab.getColumna()){
+            Nodo p=cab.getLiga();
+            while(p!=cab){
+                Nodo q=p.getLigaColumna();
+                while(q!=p){
+                    if(i==q.getColumna())
+                        return q.getColumna();
+                    q=q.getLigaColumna();
+                }
+                p=p.getLiga();
+            }
+        }
+        return Integer.MIN_VALUE;
+    }
+    
+    public float getDato(int f, int c){
+        if(f<=cab.getFila() && c<=cab.getColumna()){
+            Nodo p=cab.getLiga();
+            while(p!=cab){
+                Nodo q=p.getLigaFila();
+                while(q!=p){
+                    if(f==q.getFila()&&c==q.getColumna())
+                        return q.getDato();
+                    q=q.getLigaFila();
+                }
+                p=p.getLiga();
+            }
+            return 0;
+        }
+        return Float.MIN_VALUE;
+    }
+    
+    public void setDato(int f, int c, float dato){
         
+    }
+    
+    public void mostrar(){
+        String muestre="";
+        Nodo p=cab.getLiga();
+        while(p!=cab){
+            Nodo q=p.getLigaFila();
+            while(q!=p){
+                muestre+=q.getDato()+"  ";
+                q=q.getLigaFila();
+            }
+            muestre+=0.0+"  ";
+            p=p.getLiga();
+        }
+        JOptionPane.showMessageDialog(null, muestre, "Matriz",JOptionPane.PLAIN_MESSAGE);
     }
     
     public void almacenarDato(int f, int c, float d){
@@ -59,39 +141,41 @@ public class ListaF1 {
     }
     
     public void insertarDato(int f, int c, float d){
-        Nodo p,q,antF,antC;
-        p=cab.getLiga();
-        while(p!=cab && p.getFila()<f)
-            p=p.getLiga();
-        antF=p;
-        q=p.getLigaFila();
-        while(q!=p && q.getColumna()<c){
-            antF=q;
-            q=q.getLigaFila();
-        }
-        p=cab.getLiga();
-        while(p!=cab && p.getColumna()<c)
-            p=p.getLiga();
-        antC=p;
-        q=p.getLigaColumna();
-        while(q!=p && q.getFila()<f){
-            antC=q;
-            q=q.getLigaColumna();
-        }
-        if(q!=p && q.getFila()==f && q.getColumna()==c){
-            if(q.getDato()+d!=0)
-                q.setDato(q.getDato()+d);
-            else{
-                antF.setLigaFila(q.getLigaFila());
-                antC.setLigaColumna(q.getLigaColumna());
+        if(d!=0){
+            Nodo p,q,antF,antC;
+            p=cab.getLiga();
+            while(p!=cab && p.getFila()<f)
+                p=p.getLiga();
+            antF=p;
+            q=p.getLigaFila();
+            while(q!=p && q.getColumna()<c){
+                antF=q;
+                q=q.getLigaFila();
             }
-        }
-        else{
-            Nodo x=new Nodo(f,c,d);
-            x.setLigaFila(antF.getLigaFila());
-            antF.setLigaFila(x);
-            x.setLigaColumna(antC.getLigaColumna());
-            antC.setLigaColumna(x);
+            p=cab.getLiga();
+            while(p!=cab && p.getColumna()<c)
+                p=p.getLiga();
+            antC=p;
+            q=p.getLigaColumna();
+            while(q!=p && q.getFila()<f){
+                antC=q;
+                q=q.getLigaColumna();
+            }
+            if(q!=p && q.getFila()==f && q.getColumna()==c){
+                if(q.getDato()+d!=0)
+                    q.setDato(q.getDato()+d);
+                else{
+                    antF.setLigaFila(q.getLigaFila());
+                    antC.setLigaColumna(q.getLigaColumna());
+                }
+            }
+            else{
+                Nodo x=new Nodo(f,c,d);
+                x.setLigaFila(antF.getLigaFila());
+                antF.setLigaFila(x);
+                x.setLigaColumna(antC.getLigaColumna());
+                antC.setLigaColumna(x);
+            }
         }
     }
     
