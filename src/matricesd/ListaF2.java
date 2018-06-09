@@ -177,8 +177,45 @@ public class ListaF2 {
     }
     
     public ListaF2 sumar(ListaF2 b){
-        
-        return b;
+        if(b!=null){
+            if(this.getNfilas()==b.getNfilas() && this.getNcolumnas()==b.getNcolumnas()){
+                ListaF2 res=new ListaF2(b.getNfilas(),b.getNcolumnas());
+                for(int i=0;i<=this.getNfilas();i++){
+                    for(int j=0;j<=this.getNcolumnas();j++)
+                        res.insertarDato(i, j, this.getDato(i, j)+b.getDato(i, j));
+                }
+            return res;
+            }
+        }
+        return null;
+    }
+    
+    public ListaF1 sumar(Tripleta b){
+        if(b!=null){
+            if(this.getNfilas()==b.getNfilas() && this.getNcolumnas()==b.getNcolumnas()){
+                ListaF1 res=new ListaF1(b.getNfilas(),b.getNcolumnas());
+                for(int i=0;i<=this.getNfilas();i++){
+                    for(int j=0;j<=this.getNcolumnas();j++)
+                        res.insertarDato(i, j, this.getDato(i, j)+b.getDato(i, j));
+                }
+            return res;
+            }
+        }
+        return null;
+    }
+    
+    public Tripleta sumar(ListaF1 b){
+        if(b!=null){
+            if(this.getNfilas()==b.getNfilas() && this.getNcolumnas()==b.getNcolumnas()){
+                Tripleta res=new Tripleta(b.getNfilas(),b.getNcolumnas(),0);
+                for(int i=0;i<=this.getNfilas();i++){
+                    for(int j=0;j<=this.getNcolumnas();j++)
+                        res.insertarTrip(i, j, this.getDato(i, j)+b.getDato(i, j));
+                }
+            return res;
+            }
+        }
+        return null;
     }
     
     public ListaF2 multiplicar(ListaF2 b){
@@ -191,6 +228,11 @@ public class ListaF2 {
     
     public ListaF2 copia(){
         ListaF2 r=new ListaF2(cabeza.getFila(),cabeza.getColumna());
+         Nodo p=cabeza.getLigaFila();
+        while(p!=cabeza){
+            r.insertarDato(p.getFila(), p.getColumna(), p.getDato());
+            p=p.getLigaFila();        
+        }
         return r;
     }
 }   

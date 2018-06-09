@@ -228,7 +228,45 @@ public class ListaF1 {
     }
     
     public ListaF1 sumar(ListaF1 b){
-        return b;
+        if(b!=null){
+            if(this.getNfilas()==b.getNfilas() && this.getNcolumnas()==b.getNcolumnas()){
+                ListaF1 res=new ListaF1(b.getNfilas(),b.getNcolumnas());
+                for(int i=0;i<=this.getNfilas();i++){
+                    for(int j=0;j<=this.getNcolumnas();j++)
+                        res.insertarDato(i, j, this.getDato(i, j)+b.getDato(i, j));
+                }
+            return res;
+            }
+        }
+        return null;
+    }
+    
+    public Tripleta sumar(ListaF2 b){
+        if(b!=null){
+            if(this.getNfilas()==b.getNfilas() && this.getNcolumnas()==b.getNcolumnas()){
+                Tripleta res=new Tripleta(b.getNfilas(),b.getNcolumnas(),0);
+                for(int i=0;i<=this.getNfilas();i++){
+                    for(int j=0;j<=this.getNcolumnas();j++)
+                        res.insertarTrip(i, j, this.getDato(i, j)+b.getDato(i, j));
+                }
+            return res;
+            }
+        }
+        return null;
+    }
+    
+    public ListaF2 sumar(Tripleta b){
+        if(b!=null){
+            if(this.getNfilas()==b.getNfilas() && this.getNcolumnas()==b.getNcolumnas()){
+                ListaF2 res=new ListaF2(b.getNfilas(),b.getNcolumnas());
+                for(int i=0;i<=this.getNfilas();i++){
+                    for(int j=0;j<=this.getNcolumnas();j++)
+                        res.insertarDato(i, j, this.getDato(i, j)+b.getDato(i, j));
+                }
+            return res;
+            }
+        }
+        return null;
     }
     
     public ListaF1 multiplicar(ListaF1 b){
