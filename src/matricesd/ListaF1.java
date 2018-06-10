@@ -99,10 +99,14 @@ public class ListaF1 {
         while(p!=cab){
             Nodo q=p.getLigaFila();
             while(q!=p){
+                for(int i=0;i<=q.getFila();i++){
+                    for(int j=0;j<=q.getColumna();j++)
+                        muestre+=0.0+"  ";
+                }
                 muestre+=q.getDato()+"  ";
                 q=q.getLigaFila();
             }
-            muestre+=0.0+"  ";
+            muestre+="\n";
             p=p.getLiga();
         }
         JOptionPane.showMessageDialog(null, muestre, "Matriz",JOptionPane.PLAIN_MESSAGE);

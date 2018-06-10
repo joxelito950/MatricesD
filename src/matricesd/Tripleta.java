@@ -49,7 +49,7 @@ public class Tripleta {
             k++;
         while(k<listaTrip[0][2] && listaTrip[k][0]<=f && listaTrip[k][1]<c && listaTrip[k][2]!=0)
             k++;
-        if(k<listaTrip[0][2] && listaTrip[k][0]==f && listaTrip[k][1]==c)
+        if(k<listaTrip[0][2] && listaTrip[k][0]==f && listaTrip[k][1]==c && f!=0 && c!=0)
             JOptionPane.showMessageDialog(null,"Ya existe un dato en esa posicion","No Insertado",JOptionPane.INFORMATION_MESSAGE);
         else{
             for(j=(int)listaTrip[0][2];j>=k;j--){
@@ -83,7 +83,7 @@ public class Tripleta {
                 }
             }
             else{
-                if(listaTrip[0][2]==nt)
+                if(listaTrip[0][2]==nt-1)
                     redimensionar();
                 for(j=(int)listaTrip[0][2];j>=k;j--){
                     listaTrip[j+1][0]=listaTrip[j][0];
@@ -100,7 +100,8 @@ public class Tripleta {
     
     public void redimensionar(){
         int k;
-        float aux[][]=new float [nt+nt][3];
+        nt+=nt;
+        float aux[][]=new float [nt][3];
         for(k=0;k<=listaTrip[0][2];k++){
             aux[k][0]=listaTrip[k][0];
             aux[k][1]=listaTrip[k][1];
