@@ -192,8 +192,8 @@ public class Tripleta {
         
     }
     
-    public void eliminarTrip(){
-        
+    public Tripleta eliminarTrip(){
+        return null;
     }
     
     public Tripleta traspuesta(){
@@ -247,17 +247,19 @@ public class Tripleta {
     public Tripleta multiplicar(Tripleta b){
         if(this.getNcolumnas()==b.getNfilas()){
             Tripleta r=new Tripleta(this.getNfilas(),b.getNcolumnas(),0);
-            for(int i=0;i<=this.getNfilas();i++){
-                for(int j=0;j<=b.getNcolumnas();j++){
-                    
-                    for(int k=0;k<=b.getNfilas();k++){
-                        float acum=0;
-                        for(int l=0;l<=this.getNcolumnas();l++){
-                            acum+=this.getDato(k, l)*b.getDato(k,l);
-                        }
-                        r.insertarTrip(i, j, acum);
-                    }
-                    
+            int k=0,l=0;
+            for(int i=0;i<=this.getNcolumnas();i++){
+                int acum=0;
+                for(int j=0;j<=b.getNfilas();j++)
+                    acum+=this.getDato(i, j)*b.getDato(j, i);  
+                r.insertarTrip(k, l, acum);
+                if(k<=this.getNfilas() && l<=b.getNcolumnas()){
+                    k++;
+                    l++;
+                }
+                else{
+                    k=0;
+                    l=0;
                 }
             }
             return r;

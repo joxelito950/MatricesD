@@ -16,12 +16,12 @@ public class MatricesD {
     /**
      * @param args the command line arguments
      */
-    private static Tripleta A = null, B=null, C=null;
+    private static Tripleta A=null, B=null, C=null;
     private static ListaF1 M=null,N=null,O=null;
     private static ListaF2 X=null,Y=null,Z=null;
     
     private static void menu(){
-        String infoMenu="0. Salir\n"+"1. Crear MD\n"+"2. Mostrar MD\n"+"3. Sumar MD\n"+"4. Multiplicar MD\n";
+        String infoMenu="0. Salir\n"+"1. Crear MD\n"+"2. Mostrar MD\n"+"3. Sumar MD\n"+"4. Multiplicar MD\n"+"5. Eliminar MD\n";
         boolean sw;
         do{
         sw=opcion(Integer.parseInt(JOptionPane.showInputDialog(null, infoMenu, "***MENU***", JOptionPane.PLAIN_MESSAGE)));
@@ -44,6 +44,10 @@ public class MatricesD {
                 break;
             case 4:
                 multiplicarMD(Integer.parseInt(JOptionPane.showInputDialog(null, "0. Tripletas A*B\n"+"1. Forma 1 M*N\n"+"2. Forma 2 X*Y\n"+"3. Combinado", "Tipo de MD a Multiplicar", JOptionPane.PLAIN_MESSAGE)));
+                break;
+            case 5:
+                eliminarMD(Integer.parseInt(JOptionPane.showInputDialog(null, "0. A     "+"1. B     "+"2. C\n"+"3. M    "+"4. N     "+"5. O\n"+"6. X    "+"7. Y     "+"8. Z\n", "Seleccione matriz a Eliminar", JOptionPane.PLAIN_MESSAGE)));
+                break;
             default:
                 JOptionPane.showMessageDialog(null, "Opcion no valida", "Error", JOptionPane.QUESTION_MESSAGE);
                 break;
@@ -455,6 +459,41 @@ public class MatricesD {
                 JOptionPane.showMessageDialog(null, "Opcion no valida", "Error", JOptionPane.QUESTION_MESSAGE);
                 break;
         }
+    }
+    
+    public static void eliminarMD(int v){
+        switch(v){
+            case 0:
+                A=A.eliminarTrip();
+                break;
+            case 1:
+                B=B.eliminarTrip();
+                break;
+            case 2:
+                C=C.eliminarTrip();  
+                break;
+            case 3:
+                M=M.eliminar();
+                break;
+            case 4:
+                N=N.eliminar();
+                break;
+            case 5:
+                O=O.eliminar();
+                break;
+            case 6:
+                X=X.eliminar();
+                break;
+            case 7:
+                Y=Y.eliminar();
+                break;
+            case 8:
+                Z=Z.eliminar();
+                break;
+            default:
+                JOptionPane.showMessageDialog(null, "No esta Definido", Integer.toString(v), JOptionPane.ERROR_MESSAGE);
+                break;
+        } 
     }
     
     public static void main(String[] args) {

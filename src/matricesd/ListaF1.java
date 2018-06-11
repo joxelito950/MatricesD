@@ -238,6 +238,10 @@ public class ListaF1 {
         
     }
     
+    public ListaF1 eliminar(){
+        return null;
+    }
+    
     public ListaF1 sumar(ListaF1 b){
         if(b!=null){
             if(this.getNfilas()==b.getNfilas() && this.getNcolumnas()==b.getNcolumnas()){

@@ -79,6 +79,10 @@ public class ListaF2 {
         
     }
     
+    public ListaF2 eliminar(){
+        return null;
+    }
+    
     public void mostrar(){
         String muestra="";
         Nodo p=cabeza.getLigaFila();
