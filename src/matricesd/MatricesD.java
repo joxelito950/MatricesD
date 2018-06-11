@@ -21,7 +21,7 @@ public class MatricesD {
     private static ListaF2 X=null,Y=null,Z=null;
     
     private static void menu(){
-        String infoMenu="0. Salir\n"+"1. Crear MD\n"+"2. Mostrar MD\n"+"3. Sumar MD\n";
+        String infoMenu="0. Salir\n"+"1. Crear MD\n"+"2. Mostrar MD\n"+"3. Sumar MD\n"+"4. Multiplicar MD\n";
         boolean sw;
         do{
         sw=opcion(Integer.parseInt(JOptionPane.showInputDialog(null, infoMenu, "***MENU***", JOptionPane.PLAIN_MESSAGE)));
@@ -42,6 +42,8 @@ public class MatricesD {
             case 3: 
                 sumarMD(Integer.parseInt(JOptionPane.showInputDialog(null, "0. Tripletas A+B\n"+"1. Forma 1 M+N\n"+"2. Forma 2 X+Y\n"+"3. Combinado", "Tipo de MD a sumar", JOptionPane.PLAIN_MESSAGE)));
                 break;
+            case 4:
+                multiplicarMD(Integer.parseInt(JOptionPane.showInputDialog(null, "0. Tripletas A*B\n"+"1. Forma 1 M*N\n"+"2. Forma 2 X*Y\n"+"3. Combinado", "Tipo de MD a Multiplicar", JOptionPane.PLAIN_MESSAGE)));
             default:
                 JOptionPane.showMessageDialog(null, "Opcion no valida", "Error", JOptionPane.QUESTION_MESSAGE);
                 break;
@@ -366,6 +368,92 @@ public class MatricesD {
                 JOptionPane.showMessageDialog(null, "Opcion no valida", "Error", JOptionPane.QUESTION_MESSAGE);
                 break;
 
+        }
+    }
+    
+    public static void multiplicarMD(int tipo){
+        switch(tipo){
+            case 0:
+                if(A!=null && B!=null){
+                    C=A.multiplicar(B);
+                    JOptionPane.showMessageDialog(null, "Respuesta guardada en C\nAcepte para ver respuesta", "El resultado de la multiplicacion", JOptionPane.PLAIN_MESSAGE);
+                    mostrar(C);
+                }
+                else
+                    JOptionPane.showMessageDialog(null, "No se han creado las MD Tripleta para realizar la multiplicacion.", "Sin Datos", JOptionPane.QUESTION_MESSAGE);
+                break;
+            case 1:
+                if(M!=null && N!=null){
+                    O=M.multiplicar(N);
+                    JOptionPane.showMessageDialog(null, "Respuesta guardada en O\nAcepte para ver respuesta", "El resultado de la multiplicacion", JOptionPane.PLAIN_MESSAGE);
+                    mostrar(O);
+                }
+                else
+                    JOptionPane.showMessageDialog(null, "No se han creado las MD Forma 1 para realizar la multiplicacion.", "Sin Datos", JOptionPane.QUESTION_MESSAGE);
+                break;
+            case 2:
+                if(X!=null && Y!=null){
+                    Z=X.multiplicar(Y);
+                    JOptionPane.showMessageDialog(null, "Respuesta guardada en Z\nAcepte para ver respuesta", "El resultado de la multiplicacion", JOptionPane.PLAIN_MESSAGE);
+                    mostrar(Z);
+                }
+                else
+                    JOptionPane.showMessageDialog(null, "No se han creado las MD Forma 2 para realizar la multiplicacion.", "Sin Datos", JOptionPane.QUESTION_MESSAGE);
+                break;
+            case 3:
+                multiplicarCombinado();
+                break;
+            default:
+                JOptionPane.showMessageDialog(null, "Opcion no valida", "Error", JOptionPane.QUESTION_MESSAGE);
+                break;
+        }
+    }
+    
+    public static void multiplicarCombinado(){
+        int t=Integer.parseInt(JOptionPane.showInputDialog(null, "0. A*M\n"+"1. A*X\n"+"2. M*X\n", "Multiplicar Combinado", JOptionPane.PLAIN_MESSAGE));
+        switch(t){
+            case 0:
+                if(A==null)
+                    JOptionPane.showMessageDialog(null, "Matriz Tripleta A no definida ", "Falta Matriz", JOptionPane.QUESTION_MESSAGE);
+                else{
+                    if(M==null)
+                        JOptionPane.showMessageDialog(null, "Matriz Forma 1 M no definida ", "Falta Matriz", JOptionPane.QUESTION_MESSAGE);
+                    else{
+                        Z=A.sumar(M);
+                        JOptionPane.showMessageDialog(null, "Respuesta guardada en Z\nAcepte para ver respuesta", "El resultado de la multiplicacion", JOptionPane.PLAIN_MESSAGE);
+                        mostrar(Z);
+                    }
+                }
+                break;
+            case 1:
+                if(A==null)
+                    JOptionPane.showMessageDialog(null, "Matriz Tripleta A no definida ", "Falta Matriz", JOptionPane.QUESTION_MESSAGE);
+                else{
+                    if(X==null)
+                        JOptionPane.showMessageDialog(null, "Matriz Forma 2 X no definida ", "Falta Matriz", JOptionPane.QUESTION_MESSAGE);
+                    else{
+                        O=A.sumar(X);
+                        JOptionPane.showMessageDialog(null, "Respuesta guardada en O\nAcepte para ver respuesta", "El resultado de la multiplicacion", JOptionPane.PLAIN_MESSAGE);
+                        mostrar(O);
+                    }
+                }
+                break;
+            case 2:
+                if(X==null)
+                    JOptionPane.showMessageDialog(null, "Matriz Forma 2 X no definida ", "Falta Matriz", JOptionPane.QUESTION_MESSAGE);
+                else{
+                    if(M==null)
+                        JOptionPane.showMessageDialog(null, "Matriz Forma 1 M no definida ", "Falta Matriz", JOptionPane.QUESTION_MESSAGE);
+                    else{
+                        C=M.sumar(X);
+                        JOptionPane.showMessageDialog(null, "Respuesta guardada en C\nAcepte para ver respuesta", "El resultado de la multiplicacion", JOptionPane.PLAIN_MESSAGE);
+                        mostrar(C);
+                    }
+                }
+                break;
+            default:
+                JOptionPane.showMessageDialog(null, "Opcion no valida", "Error", JOptionPane.QUESTION_MESSAGE);
+                break;
         }
     }
     

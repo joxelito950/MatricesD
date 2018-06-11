@@ -111,11 +111,11 @@ public class Tripleta {
     }
 
     public int getNfilas() {
-        return nFilas+1;
+        return nFilas;
     }
 
     public int getNcolumnas() {
-        return nColumnas+1;
+        return nColumnas;
     }
     
     public int getCdatos(){
@@ -203,7 +203,7 @@ public class Tripleta {
     
     public Tripleta sumar(Tripleta b){ 
         if(this.getNfilas()==b.getNfilas() && this.getNcolumnas()==b.getNcolumnas()){
-            Tripleta res=new Tripleta(b.getNfilas(),b.getNcolumnas(),0);
+            Tripleta res=new Tripleta(this.nFilas,this.nColumnas,0);
             for(int i=0;i<=listaTrip[0][0];i++){
                 for(int j=0;j<=listaTrip[0][1];j++)
                     res.insertarTrip(i, j, this.getDato(i, j)+b.getDato(i, j));
@@ -245,7 +245,25 @@ public class Tripleta {
     }
     
     public Tripleta multiplicar(Tripleta b){
-        return b;
+        if(this.getNcolumnas()==b.getNfilas()){
+            Tripleta r=new Tripleta(this.getNfilas(),b.getNcolumnas(),0);
+            for(int i=0;i<=this.getNfilas();i++){
+                for(int j=0;j<=b.getNcolumnas();j++){
+                    
+                    for(int k=0;k<=b.getNfilas();k++){
+                        float acum=0;
+                        for(int l=0;l<=this.getNcolumnas();l++){
+                            acum+=this.getDato(k, l)*b.getDato(k,l);
+                        }
+                        r.insertarTrip(i, j, acum);
+                    }
+                    
+                }
+            }
+            return r;
+        }
+        JOptionPane.showMessageDialog(null, "Las filas de la matriz A no coinciden con las columnas de la otra matriz", "No es posible multiplicar", JOptionPane.INFORMATION_MESSAGE);
+        return null;
     }
     
     public void comparar(Tripleta b){
