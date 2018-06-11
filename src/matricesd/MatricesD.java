@@ -194,63 +194,63 @@ public class MatricesD {
         switch(tipo){
             case 0:
                 if(A!=null){
-                    mostrarTrip(A);
+                    mostrar(A);
                 }
                 else
                     JOptionPane.showMessageDialog(null, "No se ha creado una Matriz Dispersa", "Falta Matriz", JOptionPane.ERROR_MESSAGE);
                 break;    
             case 1:
                 if(B!=null){
-                    mostrarTrip(B);
+                    mostrar(B);
                 }
                 else
                     JOptionPane.showMessageDialog(null, "No se ha creado una Matriz Dispersa", "Falta Matriz", JOptionPane.ERROR_MESSAGE);
                 break;  
                 case 2:
                 if(C!=null){
-                    mostrarTrip(C);
+                    mostrar(C);
                 }
                 else
                     JOptionPane.showMessageDialog(null, "No se ha creado una Matriz Dispersa", "Falta Matriz", JOptionPane.ERROR_MESSAGE);
                 break;  
             case 3:
                 if(M!=null){
-                    mostrarF1(M);
+                    mostrar(M);
                 }
                 else
                     JOptionPane.showMessageDialog(null, "No se ha creado una Matriz Dispersa", "Falta Matriz", JOptionPane.ERROR_MESSAGE);
                 break;
             case 4:
                 if(N!=null){
-                    mostrarF1(N);
+                    mostrar(N);
                 }
                 else
                     JOptionPane.showMessageDialog(null, "No se ha creado una Matriz Dispersa", "Falta Matriz", JOptionPane.ERROR_MESSAGE);
                 break;
             case 5:
                 if(O!=null){
-                    mostrarF1(O);
+                    mostrar(O);
                 }
                 else
                     JOptionPane.showMessageDialog(null, "No se ha creado una Matriz Dispersa", "Falta Matriz", JOptionPane.ERROR_MESSAGE);
                 break;
             case 6:
                 if(X!=null){
-                    mostrarF2(X);
+                    mostrar(X);
                 }
                 else
                     JOptionPane.showMessageDialog(null, "No se ha creado una Matriz Dispersa", "Falta Matriz", JOptionPane.ERROR_MESSAGE);
                 break;
             case 7:
                 if(Y!=null){
-                    mostrarF2(Y);
+                    mostrar(Y);
                 }
                 else
                     JOptionPane.showMessageDialog(null, "No se ha creado una Matriz Dispersa", "Falta Matriz", JOptionPane.ERROR_MESSAGE);
                 break;
             case 8:
                 if(Z!=null){
-                    mostrarF2(Z);
+                    mostrar(Z);
                 }
                 else
                     JOptionPane.showMessageDialog(null, "No se ha creado una Matriz Dispersa", "Falta Matriz", JOptionPane.ERROR_MESSAGE);
@@ -261,21 +261,21 @@ public class MatricesD {
         }       
     }
     
-    public static void mostrarTrip(Tripleta a){
+    public static void mostrar(Tripleta a){
         if(a!=null)
             a.mostrar();
         else
             JOptionPane.showMessageDialog(null, "No se ha creado una MD tripleta", "Falta Matriz", JOptionPane.ERROR_MESSAGE);
     }
     
-    public static void mostrarF1(ListaF1 m){
+    public static void mostrar(ListaF1 m){
         if(m!=null)
             m.mostrar();
         else
             JOptionPane.showMessageDialog(null, "No se ha creado una MD Forma 1", "Falta Matriz", JOptionPane.ERROR_MESSAGE);
     }
     
-    public static void mostrarF2(ListaF2 x){
+    public static void mostrar(ListaF2 x){
         if(x!=null)
             x.mostrar();
         else
@@ -287,26 +287,29 @@ public class MatricesD {
             case 0:
                 if(A!=null && B!=null){
                     C=A.sumar(B);
-                    C.mostrar();
+                    JOptionPane.showMessageDialog(null, "Respuesta guardada en C\nAcepte para ver respuesta", "El resultado de la suma", JOptionPane.PLAIN_MESSAGE);
+                    mostrar(C);
                 }
                 else
-                    JOptionPane.showMessageDialog(null, "No se an creado las MD Tripleta para realizar la suma.", "Sin Datos", JOptionPane.QUESTION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "No se han creado las MD Tripleta para realizar la suma.", "Sin Datos", JOptionPane.QUESTION_MESSAGE);
                 break;
             case 1:
                 if(M!=null && N!=null){
                     O=M.sumar(N);
-                    O.mostrar();
+                    JOptionPane.showMessageDialog(null, "Respuesta guardada en O\nAcepte para ver respuesta", "El resultado de la suma", JOptionPane.PLAIN_MESSAGE);
+                    mostrar(O);
                 }
                 else
-                    JOptionPane.showMessageDialog(null, "No se an creado las MD Forma 1 para realizar la suma.", "Sin Datos", JOptionPane.QUESTION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "No se han creado las MD Forma 1 para realizar la suma.", "Sin Datos", JOptionPane.QUESTION_MESSAGE);
                 break;
             case 2:
                 if(X!=null && Y!=null){
                     Z=X.sumar(Y);
-                    Z.mostrar();
+                    JOptionPane.showMessageDialog(null, "Respuesta guardada en Z\nAcepte para ver respuesta", "El resultado de la suma", JOptionPane.PLAIN_MESSAGE);
+                    mostrar(Z);
                 }
                 else
-                    JOptionPane.showMessageDialog(null, "No se an creado las MD Forma 2 para realizar la suma.", "Sin Datos", JOptionPane.QUESTION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "No se han creado las MD Forma 2 para realizar la suma.", "Sin Datos", JOptionPane.QUESTION_MESSAGE);
                 break;
             case 3:
                 sumarCombinado();
@@ -323,31 +326,40 @@ public class MatricesD {
             case 0:
                 if(A==null)
                     JOptionPane.showMessageDialog(null, "Matriz Tripleta A no definida ", "Falta Matriz", JOptionPane.QUESTION_MESSAGE);
-                if(M==null)
-                    JOptionPane.showMessageDialog(null, "Matriz Forma 1 M no definida ", "Falta Matriz", JOptionPane.QUESTION_MESSAGE);
                 else{
-                    Z=A.sumar(M);
-                    Z.mostrar();
+                    if(M==null)
+                        JOptionPane.showMessageDialog(null, "Matriz Forma 1 M no definida ", "Falta Matriz", JOptionPane.QUESTION_MESSAGE);
+                    else{
+                        Z=A.sumar(M);
+                        JOptionPane.showMessageDialog(null, "Respuesta guardada en Z\nAcepte para ver respuesta", "El resultado de la suma", JOptionPane.PLAIN_MESSAGE);
+                        mostrar(Z);
+                    }
                 }
                 break;
             case 1:
                 if(A==null)
                     JOptionPane.showMessageDialog(null, "Matriz Tripleta A no definida ", "Falta Matriz", JOptionPane.QUESTION_MESSAGE);
-                if(X==null)
-                    JOptionPane.showMessageDialog(null, "Matriz Forma 2 X no definida ", "Falta Matriz", JOptionPane.QUESTION_MESSAGE);
                 else{
-                    O=A.sumar(X);
-                    O.mostrar();
+                    if(X==null)
+                        JOptionPane.showMessageDialog(null, "Matriz Forma 2 X no definida ", "Falta Matriz", JOptionPane.QUESTION_MESSAGE);
+                    else{
+                        O=A.sumar(X);
+                        JOptionPane.showMessageDialog(null, "Respuesta guardada en O\nAcepte para ver respuesta", "El resultado de la suma", JOptionPane.PLAIN_MESSAGE);
+                        mostrar(O);
+                    }
                 }
                 break;
             case 2:
                 if(X==null)
                     JOptionPane.showMessageDialog(null, "Matriz Forma 2 X no definida ", "Falta Matriz", JOptionPane.QUESTION_MESSAGE);
-                if(M==null)
-                    JOptionPane.showMessageDialog(null, "Matriz Forma 1 M no definida ", "Falta Matriz", JOptionPane.QUESTION_MESSAGE);
                 else{
-                    C=M.sumar(X);
-                    C.mostrar();
+                    if(M==null)
+                        JOptionPane.showMessageDialog(null, "Matriz Forma 1 M no definida ", "Falta Matriz", JOptionPane.QUESTION_MESSAGE);
+                    else{
+                        C=M.sumar(X);
+                        JOptionPane.showMessageDialog(null, "Respuesta guardada en C\nAcepte para ver respuesta", "El resultado de la suma", JOptionPane.PLAIN_MESSAGE);
+                        mostrar(C);
+                    }
                 }
                 break;
             default:

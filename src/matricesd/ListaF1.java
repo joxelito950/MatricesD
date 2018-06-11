@@ -32,10 +32,14 @@ public class ListaF1 {
     
     public int getCdatos(){
         int cont=0;
-        Nodo p=cab.getLigaFila();
+        Nodo p=cab.getLiga();
         while(p!=cab){
-            cont++;
-            p=p.getLigaFila();        
+            Nodo q=p.getLigaFila();
+            while(q!=p){
+                cont++;
+                q=q.getLigaFila();
+            }
+            p=p.getLiga();        
         }
         return cont;
     }
@@ -97,17 +101,20 @@ public class ListaF1 {
         String muestre="";
         Nodo p=cab.getLiga();
         while(p!=cab){
-            Nodo q=p.getLigaFila();
-            while(q!=p){
-                for(int i=0;i<=q.getFila();i++){
-                    for(int j=0;j<=q.getColumna();j++)
-                        muestre+=0.0+"  ";
+            for(int i=0;i<=cab.getFila();i++){
+                Nodo q=p.getLigaFila();
+                for(int j=0;j<=cab.getColumna();j++){
+                    if(i==q.getFila() && j==q.getColumna()){
+                        muestre+=q.getDato()+"  ";
+                        q=q.getLigaFila();
+                    }
+                    else
+                        muestre+=0.0+"  ";  
                 }
-                muestre+=q.getDato()+"  ";
-                q=q.getLigaFila();
+                p=p.getLiga();
+                muestre+="\n";
             }
-            muestre+="\n";
-            p=p.getLiga();
+            p=cab;
         }
         JOptionPane.showMessageDialog(null, muestre, "Matriz",JOptionPane.PLAIN_MESSAGE);
     }
@@ -200,7 +207,7 @@ public class ListaF1 {
             n=nc;
         p=new Nodo(nf,nc,0);
         ult=p;
-        for(k=1;k<=n;k++){
+        for(k=0;k<=n;k++){
             x=new Nodo(k,k,0);
             x.setLigaFila(x);
             x.setLigaColumna(x);
@@ -241,6 +248,7 @@ public class ListaF1 {
                 }
             return res;
             }
+            JOptionPane.showMessageDialog(null, "Las filas y columnas de la matriz no coinciden con la de la otra matriz", "No es posible sumar", JOptionPane.INFORMATION_MESSAGE);
         }
         return null;
     }
@@ -255,6 +263,7 @@ public class ListaF1 {
                 }
             return res;
             }
+            JOptionPane.showMessageDialog(null, "Las filas y columnas de la matriz no coinciden con la de la otra matriz", "No es posible sumar", JOptionPane.INFORMATION_MESSAGE);
         }
         return null;
     }
@@ -269,6 +278,7 @@ public class ListaF1 {
                 }
             return res;
             }
+            JOptionPane.showMessageDialog(null, "Las filas y columnas de la matriz no coinciden con la de la otra matriz", "No es posible sumar", JOptionPane.INFORMATION_MESSAGE);
         }
         return null;
     }

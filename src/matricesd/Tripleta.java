@@ -210,12 +210,13 @@ public class Tripleta {
             }
             return res;
         }
+        JOptionPane.showMessageDialog(null, "Las filas y columnas de la matriz Tripleta no coinciden con la de la otra matriz", "No es posible sumar", JOptionPane.INFORMATION_MESSAGE);
         return null;
     }
     
     public ListaF1 sumar(ListaF2 b){
         if(b!=null){
-            if(this.getNfilas()==b.getNfilas() && this.getNcolumnas()==b.getNcolumnas()){
+            if(this.nFilas==b.getNfilas() && this.nColumnas==b.getNcolumnas()){
                 ListaF1 res=new ListaF1(b.getNfilas(),b.getNcolumnas());
                 for(int i=0;i<=listaTrip[0][0];i++){
                     for(int j=0;j<=listaTrip[0][1];j++)
@@ -223,13 +224,14 @@ public class Tripleta {
                 }
             return res;
             }
+            JOptionPane.showMessageDialog(null, "Las filas y columnas de la matriz A no coinciden con la de la otra matriz", "No es posible sumar", JOptionPane.INFORMATION_MESSAGE);
         }
         return null;
     }
     
     public ListaF2 sumar(ListaF1 b){
         if(b!=null){
-            if(this.getNfilas()==b.getNfilas() && this.getNcolumnas()==b.getNcolumnas()){
+            if(this.nFilas==b.getNfilas() && this.nColumnas==b.getNcolumnas()){
                 ListaF2 res=new ListaF2(b.getNfilas(),b.getNcolumnas());
                 for(int i=0;i<=listaTrip[0][0];i++){
                     for(int j=0;j<=listaTrip[0][1];j++)
@@ -237,6 +239,7 @@ public class Tripleta {
                 }
             return res;
             }
+            JOptionPane.showMessageDialog(null, "Las filas y columnas de la matriz A no coinciden con la de la otra matriz", "No es posible sumar", JOptionPane.INFORMATION_MESSAGE);
         }
         return null;
     }

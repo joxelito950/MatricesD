@@ -44,6 +44,7 @@ public class ListaF2 {
             while(p!=cabeza){
                 if(i==p.getFila())
                     return p.getFila();
+                p=p.getLigaFila();
             }
         }
         return Integer.MIN_VALUE;
@@ -55,6 +56,7 @@ public class ListaF2 {
             while(p!=cabeza){
                 if(i==p.getColumna())
                     return p.getColumna();
+                p=p.getLigaColumna();
             }
         }
         return Integer.MIN_VALUE;
@@ -65,7 +67,8 @@ public class ListaF2 {
             Nodo p=cabeza.getLigaFila();
             while(p!=cabeza){
                 if(f==p.getFila() && c==p.getColumna())
-                    return p.getFila();
+                    return p.getDato();
+                p=p.getLigaFila();
             }
             return 0;
         }
@@ -80,7 +83,27 @@ public class ListaF2 {
         String muestra="";
         Nodo p=cabeza.getLigaFila();
         while(p!=cabeza){
-            muestra=muestra+p.getDato();
+            for(int i=0;i<=cabeza.getFila();i++){
+                for(int j=0;j<=cabeza.getColumna();j++){
+                    if(p.getFila()==i && p.getColumna()==j){
+                        muestra=muestra+p.getDato()+"   ";
+                        p=p.getLigaFila();
+                    }
+                    else
+                        muestra+=0.0+"    ";
+                }
+                muestra+="\n";
+            }
+            p=cabeza;
+        }
+        JOptionPane.showMessageDialog(null, muestra, "Matriz Forma 2", JOptionPane.PLAIN_MESSAGE);
+    }
+    
+    public void mostrarDiferente0(){
+        String muestra="";
+        Nodo p=cabeza.getLigaFila();
+        while(p!=cabeza){
+            muestra=muestra+p.getDato()+"   ";
             p=p.getLigaFila();        
         }
         JOptionPane.showMessageDialog(null, muestra, "Datos diferentes de cero en la matriz", JOptionPane.PLAIN_MESSAGE);
@@ -186,6 +209,7 @@ public class ListaF2 {
                 }
             return res;
             }
+            JOptionPane.showMessageDialog(null, "Las filas y columnas de la matriz no coinciden con la de la otra matriz", "No es posible sumar", JOptionPane.INFORMATION_MESSAGE);
         }
         return null;
     }
@@ -200,6 +224,7 @@ public class ListaF2 {
                 }
             return res;
             }
+            JOptionPane.showMessageDialog(null, "Las filas y columnas de la matriz no coinciden con la de la otra matriz", "No es posible sumar", JOptionPane.INFORMATION_MESSAGE);
         }
         return null;
     }
@@ -214,6 +239,7 @@ public class ListaF2 {
                 }
             return res;
             }
+            JOptionPane.showMessageDialog(null, "Las filas y columnas de la matriz no coinciden con la de la otra matriz", "No es posible sumar", JOptionPane.INFORMATION_MESSAGE);
         }
         return null;
     }
