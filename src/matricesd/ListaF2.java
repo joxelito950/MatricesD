@@ -248,8 +248,38 @@ public class ListaF2 {
         return null;
     }
     
+    public ListaF2 restar(ListaF2 b){
+        if(b!=null){
+            if(this.getNfilas()==b.getNfilas() && this.getNcolumnas()==b.getNcolumnas()){
+                ListaF2 res=new ListaF2(b.getNfilas(),b.getNcolumnas());
+                for(int i=0;i<=this.getNfilas();i++){
+                    for(int j=0;j<=this.getNcolumnas();j++)
+                        res.insertarDato(i, j, this.getDato(i, j)-b.getDato(i, j));
+                }
+            return res;
+            }
+            JOptionPane.showMessageDialog(null, "Las filas y columnas de la matriz no coinciden con la de la otra matriz", "No es posible sumar", JOptionPane.INFORMATION_MESSAGE);
+        }
+        return null;
+    }
+    
     public ListaF2 multiplicar(ListaF2 b){
-        return b;
+        if(this.getNcolumnas()==b.getNfilas()){
+            ListaF2 r=new ListaF2(this.getNfilas(),b.getNcolumnas());
+            for(int i=0;i<=this.getNfilas();i++){
+                for(int j=0;j<=b.getNcolumnas();j++)
+                    r.insertarDato(i, j, calcularProductoEscalar(i, j, b));
+            }
+            return r;
+        }
+        return null;
+    }
+    
+    private float calcularProductoEscalar(int fA, int cB,ListaF2 b){
+        int acum=0;
+        for(int i=0;i<=this.getNcolumnas();i++)
+                acum+=this.getDato(fA, i)*b.getDato(i, cB);  
+        return acum;
     }
     
     public boolean comparar(ListaF2 b){

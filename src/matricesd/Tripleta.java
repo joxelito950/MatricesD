@@ -244,6 +244,49 @@ public class Tripleta {
         return null;
     }
     
+    public Tripleta restar(Tripleta b){ 
+        if(this.getNfilas()==b.getNfilas() && this.getNcolumnas()==b.getNcolumnas()){
+            Tripleta res=new Tripleta(this.nFilas,this.nColumnas,0);
+            for(int i=0;i<=listaTrip[0][0];i++){
+                for(int j=0;j<=listaTrip[0][1];j++)
+                    res.insertarTrip(i, j, this.getDato(i, j)-b.getDato(i, j));
+            }
+            return res;
+        }
+        JOptionPane.showMessageDialog(null, "Las filas y columnas de la matriz Tripleta no coinciden con la de la otra matriz", "No es posible sumar", JOptionPane.INFORMATION_MESSAGE);
+        return null;
+    }
+    
+    public ListaF1 restar(ListaF2 b){
+        if(b!=null){
+            if(this.nFilas==b.getNfilas() && this.nColumnas==b.getNcolumnas()){
+                ListaF1 res=new ListaF1(b.getNfilas(),b.getNcolumnas());
+                for(int i=0;i<=listaTrip[0][0];i++){
+                    for(int j=0;j<=listaTrip[0][1];j++)
+                        res.insertarDato(i, j, this.getDato(i, j)-b.getDato(i, j));
+                }
+            return res;
+            }
+            JOptionPane.showMessageDialog(null, "Las filas y columnas de la matriz A no coinciden con la de la otra matriz", "No es posible sumar", JOptionPane.INFORMATION_MESSAGE);
+        }
+        return null;
+    }
+    
+    public ListaF2 restar(ListaF1 b){
+        if(b!=null){
+            if(this.nFilas==b.getNfilas() && this.nColumnas==b.getNcolumnas()){
+                ListaF2 res=new ListaF2(b.getNfilas(),b.getNcolumnas());
+                for(int i=0;i<=listaTrip[0][0];i++){
+                    for(int j=0;j<=listaTrip[0][1];j++)
+                        res.insertarDato(i, j, this.getDato(i, j)-b.getDato(i, j));
+                }
+            return res;
+            }
+            JOptionPane.showMessageDialog(null, "Las filas y columnas de la matriz A no coinciden con la de la otra matriz", "No es posible sumar", JOptionPane.INFORMATION_MESSAGE);
+        }
+        return null;
+    }
+    
     public Tripleta multiplicar(Tripleta b){
         if(this.getNcolumnas()==b.getNfilas()){
             Tripleta r=new Tripleta(this.getNfilas(),b.getNcolumnas(),0);
