@@ -288,7 +288,60 @@ public class ListaF1 {
     }
     
     public ListaF1 multiplicar(ListaF1 b){
-        return b;
+        if(this.getNcolumnas()==b.getNfilas()){
+            ListaF1 r=new ListaF1(this.getNfilas(),b.getNcolumnas());
+            for(int i=0;i<=this.getNfilas();i++){
+                for(int j=0;j<=b.getNcolumnas();j++)
+                    r.insertarDato(i, j, calcularProductoEscalar(i, j, b));
+            }
+            return r;
+        }
+        return null;
+    }
+    
+    private float calcularProductoEscalar(int fA, int cB,ListaF1 b){
+        int acum=0;
+        for(int i=0;i<=this.getNcolumnas();i++)
+                acum+=this.getDato(fA, i)*b.getDato(i, cB);  
+        return acum;
+    }
+    
+    public ListaF2 multiplicar(Tripleta b){
+        if(this.getNcolumnas()==b.getNfilas()){
+            ListaF2 r=new ListaF2(this.getNfilas(),b.getNcolumnas());
+            for(int i=0;i<=this.getNfilas();i++){
+                for(int j=0;j<=b.getNcolumnas();j++)
+                    r.insertarDato(i, j, calcularProductoEscalar(i, j, b));
+            }
+            return r;
+        }
+        return null;
+    }
+    
+    private float calcularProductoEscalar(int fA, int cB,Tripleta b){
+        int acum=0;
+        for(int i=0;i<=this.getNcolumnas();i++)
+                acum+=this.getDato(fA, i)*b.getDato(i, cB);  
+        return acum;
+    }
+    
+    public Tripleta multiplicar(ListaF2 b){
+        if(this.getNcolumnas()==b.getNfilas()){
+            Tripleta r=new Tripleta(this.getNfilas(),b.getNcolumnas(),0);
+            for(int i=0;i<=this.getNfilas();i++){
+                for(int j=0;j<=b.getNcolumnas();j++)
+                    r.insertarTrip(i, j, calcularProductoEscalar(i, j, b));
+            }
+            return r;
+        }
+        return null;
+    }
+    
+    private float calcularProductoEscalar(int fA, int cB,ListaF2 b){
+        int acum=0;
+        for(int i=0;i<=this.getNcolumnas();i++)
+                acum+=this.getDato(fA, i)*b.getDato(i, cB);  
+        return acum;
     }
     
     public void comparar(ListaF1 b){

@@ -423,7 +423,7 @@ public class MatricesD {
                     if(M==null)
                         JOptionPane.showMessageDialog(null, "Matriz Forma 1 M no definida ", "Falta Matriz", JOptionPane.QUESTION_MESSAGE);
                     else{
-                        Z=A.sumar(M);
+                        Z=A.multiplicar(M);
                         JOptionPane.showMessageDialog(null, "Respuesta guardada en Z\nAcepte para ver respuesta", "El resultado de la multiplicacion", JOptionPane.PLAIN_MESSAGE);
                         mostrar(Z);
                     }
@@ -436,7 +436,7 @@ public class MatricesD {
                     if(X==null)
                         JOptionPane.showMessageDialog(null, "Matriz Forma 2 X no definida ", "Falta Matriz", JOptionPane.QUESTION_MESSAGE);
                     else{
-                        O=A.sumar(X);
+                        O=A.multiplicar(X);
                         JOptionPane.showMessageDialog(null, "Respuesta guardada en O\nAcepte para ver respuesta", "El resultado de la multiplicacion", JOptionPane.PLAIN_MESSAGE);
                         mostrar(O);
                     }
@@ -449,7 +449,7 @@ public class MatricesD {
                     if(M==null)
                         JOptionPane.showMessageDialog(null, "Matriz Forma 1 M no definida ", "Falta Matriz", JOptionPane.QUESTION_MESSAGE);
                     else{
-                        C=M.sumar(X);
+                        C=M.multiplicar(X);
                         JOptionPane.showMessageDialog(null, "Respuesta guardada en C\nAcepte para ver respuesta", "El resultado de la multiplicacion", JOptionPane.PLAIN_MESSAGE);
                         mostrar(C);
                     }
